@@ -1,8 +1,8 @@
 import './style.css'
-import {name} from './bases/01-types'
 import typescriptLogo from './typescript.svg'
 import viteLogo from '/vite.svg'
 import { setupCounter } from './counter.ts'
+import { pokemons } from './bases/02-objects.ts'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
@@ -17,7 +17,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <button id="counter" type="button"></button>
     </div>
     <p class="read-the-docs">
-      Bienvenido a TypeScript ${name}
+      ${pokemons.join(',')}
     </p>
   </div>
 `
