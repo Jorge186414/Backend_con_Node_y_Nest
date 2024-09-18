@@ -21,7 +21,16 @@ export const bulbasaur: Pokemon = {
   id: 1,
   name: 'Bulbasaur'
 }
+
+export const lapras: Pokemon ={
+  id: 19,
+  name: 'lapras'
+}
 //! No podemos instanciar interfaces
 
-
-console.log(bulbasaur)
+//! Con esto especificamos que pokemons va a ser un arreglo de tipo Pokemon,
+//! de esta forma no infiere el tipo de dato, si no que nosotros que lo asignamos
+export const pokemons:Pokemon[] = [ ]
+pokemons.push(bulbasaur)
+pokemons.push(lapras)
+console.log(pokemons)
