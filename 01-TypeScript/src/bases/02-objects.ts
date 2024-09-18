@@ -1,6 +1,6 @@
 export const pokemonIds = [1, 20, 45, 89, 90]
 
-pokemonIds.push('Hola') //! Esto da error por que pokemonIds es un arreglo de numeros, cosa que es posible con JS
+// pokemonIds.push('Hola') //! Esto da error por que pokemonIds es un arreglo de numeros, cosa que es posible con JS
 
 console.log(pokemonIds)
 // Pero si lo mostramos, aparentemente si incluyo Hola en el arreglo
