@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { Move, PokeAPIResponse } from '../interfaces/pokeapi-response.interface'
 
 // Abstraccion de un objeto que existe en la vida real
 // Con las clases podremos hacer instancias de estas,
@@ -30,9 +31,10 @@ export class Pokemon {
   }
 
   // Funciones asincronas
-  async getMoves(){
-    const response = await axios.get('https://pokeapi.co/api/v2/pokemon/63')
-    console.log(response.data.moves)
+  async getMoves(): Promise<Move[]> {
+    const response = await axios.get<PokeAPIResponse>('https://pokeapi.co/api/v2/pokemon/63')
+    console.log(response.data.moves[0].move.name)
+
     return response.data.moves
   }
 }
