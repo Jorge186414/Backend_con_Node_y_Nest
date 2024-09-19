@@ -2,7 +2,7 @@ import './style.css'
 import typescriptLogo from './typescript.svg'
 import viteLogo from '/vite.svg'
 import { setupCounter } from './counter.ts'
-import { abra } from './bases/03-classes.ts'
+import { charmander } from './bases/04-injections.ts'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
@@ -17,7 +17,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <button id="counter" type="button"></button>
     </div>
     <p class="read-the-docs">
-      ${abra.name}
+      ${charmander.name} ${charmander.id}
     </p>
   </div>
 `
