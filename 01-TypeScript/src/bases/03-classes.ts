@@ -3,15 +3,33 @@
 // cosa que no es posible con las interfaces, ya que solo
 // agregan reglas y condiciones a algo
 export class Pokemon {
-  public id: number
-  public name: string
+
+  // getters y setters
+  get imageUrl(): string {
+    return `https://pokemon/com/${this.id}.jpg`
+  }
+
 
   // El metodo constructor va a ser ejecutado cada que se 
   // cree una instancia de la clase Pokemon
-  constructor(id:number, name:string){
-    this.id = id
-    this.name = name
+  constructor(
+    // Pasando los parametros de esta forma nos evitamos la asignacion mediante .this
+    public readonly id: number,
+    public name: string,
+  ) { }
+
+  // Metodos de clase
+  scream() {
+    console.log(`${this.name.toUpperCase()}!!!`)
+  }
+
+  speak() {
+    console.log(`${this.name}, ${this.name}`)
   }
 }
 
 export const abra = new Pokemon(65, 'Abra')
+
+console.log(abra.imageUrl)
+abra.speak()
+abra.scream()
