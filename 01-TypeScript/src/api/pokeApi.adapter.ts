@@ -2,6 +2,7 @@ import axios from 'axios'
 
 export class PokeAPIFetchAdapter {
 
+   // La T significa que sera un tipo de dato generico, es un estandar
    async get<T>(url: string): Promise<T> {
       const response = await fetch(url)
       const data: T = await response.json()
@@ -10,7 +11,7 @@ export class PokeAPIFetchAdapter {
    }
 }
 
-export class PokeAPIAdapter {
+export class PokeAPIAdapterAxios {
 
    private readonly axios = axios
 
