@@ -1,5 +1,5 @@
 import { Move, PokeAPIResponse } from '../interfaces/pokeapi-response.interface';
-import { PokeAPIAdapterAxios, PokeAPIFetchAdapter } from '../api/pokeApi.adapter';
+import { HttpAdapter, PokeAPIAdapterAxios, PokeAPIFetchAdapter } from '../api/pokeApi.adapter';
 
 export class Pokemon {
 
@@ -10,8 +10,10 @@ export class Pokemon {
 	constructor(
 		public readonly id: number,
 		public name: string,
-		// Todo: inyectar dependencias
-		private readonly http: PokeAPIAdapterAxios
+
+		//! Todo: inyectar dependencias
+		// La dependencia que debemos implementar sera el adaptador que acabamos de crear
+		private readonly http: HttpAdapter
 
 	) { }
 
