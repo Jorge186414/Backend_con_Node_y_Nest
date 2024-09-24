@@ -3,9 +3,7 @@ import { Controller, Get, Param } from '@nestjs/common';
 @Controller('cars')
 export class CarsController {
 
-   // Se separan los carros para poder recuperarlos en base a su ID
-   private cars = ['Toyota', 'Subaru', 'Nissan', 'Chevrolet', 'Ford']
-
+   
    @Get()
    getAllCars() {
       return this.cars
