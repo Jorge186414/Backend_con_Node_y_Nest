@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class CarsService {
-   
+
    private cars = [
       {
          id: 1,
@@ -31,4 +31,14 @@ export class CarsService {
       }
    ]
 
+   // Metodo para recuperar todos los carros
+   findAll() {
+      return this.cars
+   }
+
+   // Metodo para recuperar los datos de un carro en base a un id
+   findOneByID(id: number) {
+      const car = this.cars.find(car => car.id === id)
+      return car
+   }
 }
