@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Car } from './interfaces/car.interface';
+import { Car } from './interfaces/cars.interface';
 import { v4 as uuid } from 'uuid'
 
 
