@@ -1,4 +1,4 @@
-import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
 import { CarsService } from './cars.service';
 
 @Controller('cars')
@@ -21,5 +21,25 @@ export class CarsController {
    getCarByID(@Param('id', ParseIntPipe) id: number) {
       // retornarmos el nombre del carro en base a su posicion en el arreglo
       return this.carsService.findOneByID(id)
+   }
+
+   @Post()
+   createCar(@Body() body: any) {
+      return body
+   }
+
+   @Patch(':id')
+   updateCar(
+      @Param('id', ParseIntPipe) id: number,
+      @Body() body: any) {
+      return body
+   }
+
+   @Delete(':id')
+   deleteCar(@Param('id', ParseIntPipe) id: number) {
+      return {
+         method: 'DELETE',
+         id: id
+      }
    }
 }
