@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post, UsePipes, ValidationPipe } from '@nestjs/common';
 import { CarsService } from './cars.service';
 import { CreateCarDto } from './dto/create-car.dto';
 
@@ -26,12 +26,16 @@ export class CarsController {
 
    // Metodo para obtener crear un objeto
    @Post()
+   @UsePipes(ValidationPipe)  // De esta forma vamos a poder validar los datos que queremos recibir
    createCar(@Body() createCarDto: CreateCarDto) {
       return createCarDto
    }
 
    // Metodo para editar/actualizar un objeto
    @Patch(':id')
+   // Dado que para el patch tambien usamos la validacion en el body, colocamos
+   // tambien el decorador en este metodo
+   @UsePipes(ValidationPipe)
    updateCar(
       @Param('id') id: string,
       @Body() body: any) {
