@@ -41,10 +41,7 @@ export class CarsController {
 
    // Metodo para eliminar un objeto
    @Delete(':id')
-   deleteCar(@Param('id') id: string) {
-      return {
-         method: 'DELETE',
-         id: id
-      }
+   deleteCar(@Param('id', ParseUUIDPipe) id: string) {
+      return this.carsService.delete(id)
    }
 }
