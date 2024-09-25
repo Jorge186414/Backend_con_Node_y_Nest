@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Car } from './interfaces/cars.interface';
 import { v4 as uuid } from 'uuid'
+import { CreateCarDto } from './dto/create-car.dto';
 
 
 @Injectable()
@@ -48,4 +49,34 @@ export class CarsService {
 
       return car
    }
+
+   create(createCarDto: CreateCarDto) {
+      // Para esto hay varias formas
+      //? 1. Con la instancia DTO
+      const car: Car = {
+         id: uuid(),
+         brand: createCarDto.brand,
+         model: createCarDto.model
+      }
+
+      //? 2. Con destructuracion de parametro
+      // En los parametros en lugar de poner createCarDto, colocamos el nombre de la 
+      // llave de la que queremos extraer el dato
+      // (brand, model: CreateCarDto)
+      // const car : Car = {
+      //    id: uuid(),
+      //    brand: brand,
+      //    model: ,model
+      // }
+
+      //? 3. Con operador ... para esparcir los argumentos
+      // const car : Car = {
+      //    id: uuid(),
+      //    ... createCarDto
+      // }
+
+      this.cars.push(car)
+      return car
+   }
+
 }
