@@ -1,6 +1,6 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post } from '@nestjs/common';
 import { CarsService } from './cars.service';
-import { Car } from './interfaces/car.interface';
+import { CreateCarDto } from './dto/create-car.dto';
 
 @Controller('cars')
 export class CarsController {
@@ -19,22 +19,22 @@ export class CarsController {
    // Metodo para recuperar un carro por su id
    @Get(':id')
    // Tratamos al id como string, posteriormente se va a cambiar por number
-   getCarByID(@Param('id') id: string) {
+   getCarByID(@Param('id', new ParseUUIDPipe({ version: '4' })) id: string) {
       // retornarmos el nombre del carro en base a su posicion en el arreglo
       return this.carsService.findOneByID(id)
    }
 
    // Metodo para obtener crear un objeto
    @Post()
-   createCar(@Body() body: any) {
-      return body
+   createCar(@Body() createCarDto: CreateCarDto) {
+      return createCarDto
    }
 
    // Metodo para editar/actualizar un objeto
    @Patch(':id')
    updateCar(
       @Param('id') id: string,
-      @Body() body: Car) {
+      @Body() body: any) {
       return body
    }
 
