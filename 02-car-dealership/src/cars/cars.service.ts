@@ -7,31 +7,7 @@ import { CreateCarDto, UpdateCarDto } from './dto';
 export class CarsService {
 
    private cars: Car[] = [
-      {
-         id: uuid(),
-         brand: 'Toyota',
-         model: 'Corolla'
-      },
-      {
-         id: uuid(),
-         brand: 'Honda',
-         model: 'Civic'
-      },
-      {
-         id: uuid(),
-         brand: 'Ford',
-         model: 'Mustang'
-      },
-      {
-         id: uuid(),
-         brand: 'Chevrolet',
-         model: 'Camaro'
-      },
-      {
-         id: uuid(),
-         brand: 'Tesla',
-         model: 'Model 3'
-      }
+
    ]
 
    // Metodo para recuperar todos los carros
@@ -96,6 +72,10 @@ export class CarsService {
    delete(id: string) {
       let car = this.findOneByID(id)
       this.cars = this.cars.filter(car => car.id !== id)
+   }
+
+   fillCarsWithSeedData(cars: Car[]) {
+      this.cars = cars
    }
 
 }
