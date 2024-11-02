@@ -75,9 +75,14 @@ export class PokemonService {
 
   async remove(id: string) {
 
-    const result = this.pokemonModel.findByIdAndDelete(id)
+    const { deletedCount } = await this.pokemonModel.deleteOne({ _id: id })
 
-    return result
+
+    if (deletedCount === 0) {
+      throw new BadRequestException(`Pokemon with ${id} not fount`)
+    }
+
+    return
   }
 
   private handleException(error: any) {
@@ -85,7 +90,7 @@ export class PokemonService {
       throw new BadRequestException(`Pokemon exists in db ${JSON.stringify(error.keyValue)}`)
     }
     console.log(error)
-    throw new InternalServerErrorException(`Can't create Pokemin -Check server logs`)
+    throw new InternalServerErrorException(`Can't create Pokemon -Check server logs`)
   }
 
 }
