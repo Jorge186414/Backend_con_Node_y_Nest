@@ -6,25 +6,36 @@
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
 # Ejecutar en desarrollo.
-1. Clonar el repositorio.
-2. Hacer un pull de la rama pokedex:
+1.- Tener Nest CLI instalado
+```
+npm i -g @nestjs/cli
+```
+2.- Clonar el repositorio.
+
+3.- Hacer un pull de la rama pokedex:
 ```
 git pull origin pokedex
 ```
-3. Ejecutar:
+
+4.- Ejecutar:
 
 ```
 yarn install
 ```
 
-4. Tener Nest CLI instalado
+5.- Tener Nest CLI instalado
 ```
 npm i -g @nestjs/cli
 ```
 
-5. Levantar la base de datos.
+6.- Levantar la base de datos.
 ```
 docker-compose up -d
+```
+
+7.- Reconstruir la Base de Datos con la Seed
+```
+localhost:3000/api/v2/seed
 ```
 
 ## Stack Usado
