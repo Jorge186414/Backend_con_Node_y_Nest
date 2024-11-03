@@ -11,8 +11,12 @@ async function bootstrap() {
     new ValidationPipe({
       whitelist: true, // Aunque se manden mas datos que no estan en el DTO
       // los va a eliminar de forma automatica y solo mostrara los definidos en el DTO
-      forbidNonWhitelisted: true // Aunque whitelist los elimina, este se encarga de 
+      forbidNonWhitelisted: true, // Aunque whitelist los elimina, este se encarga de 
       // decir que los datos extras que se estan mandando no deberian de ir
+      transform: true,
+      transformOptions: {
+        enableImplicitConversion: true
+      }
     })
   )
 
