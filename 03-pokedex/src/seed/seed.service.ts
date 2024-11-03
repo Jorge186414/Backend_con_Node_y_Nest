@@ -23,10 +23,10 @@ export class SeedService {
     await this.pokemonModel.deleteMany()  //! Esto equivale a Delete * FROM nombre_tabla
 
     // Una vez que tenemos la interfaz creada le asignamos ese tipo a nuestra respuesta
-    const { data } = await this.axios.get<PokeResponse>('https://pokeapi.co/api/v2/pokemon?limit=10')
+    const { data } = await this.axios.get<PokeResponse>('https://pokeapi.co/api/v2/pokemon?limit=650')
 
-    //* En este array se iran guardando todos los pokemones en base a la promesa de la llamada a la API
-    const insertPromisesArray = []
+    //? Definimos la forma que tendra nuestro arreglo de pokemon
+    const pokemonToInsert: { name: string, no: number }[] = []
 
     // Extraemos el nombre del pokemon y el id de la respuesta a la API
     data.results.forEach(async ({ name, url }) => {
@@ -38,13 +38,17 @@ export class SeedService {
       //? Insertamos lo registros en la base de datos
       //const pokemon = await this.pokemonModel.create({ name, no })
 
-      //* En lugar a que se espera que se cumpla y se inserten, primero guardamos la respuesta en el arreglo
-      insertPromisesArray.push(this.pokemonModel.create({ name, no }))
+      //! Ahora antes de mandarlo a la BD primero lo insertamos todo en un arreglo de pokemon
+      pokemonToInsert.push({ name, no }) //? El arreglo luciria asi, [{name: bulbasaur, no: 1}]
     })
 
-    //* Una vez que termino de recibir o almacenar las respuestas las incertamos
-    await Promise.all(insertPromisesArray)
-
+    //? Ya que tenemos todos los pokemon almacenados, pasamos a insertarlos a la BD
+    await this.pokemonModel.insertMany(pokemonToInsert)
+    //! Esto equivale a INSERT INTO nombre_tabla(campo1, campo2)
+    //!VALUES(bulbasaur, 1)
+    //!VALUES(ivysauir, 1)
+    //!VALUES(venusaur, 1)
+    //!VALUES(..., ...)
     return 'Seed Excecuted';
   }
 }
